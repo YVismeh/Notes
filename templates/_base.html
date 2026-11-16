@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="یادداشت‌ها — اپلیکیشنی ساده و زیبا برای یادداشت‌برداری">
+    <title>{% block title %}یادداشت‌ها{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236c5ce7'/%3E%3Cpath d='M10 9h12v3H10zm0 5h12v2.5H10zm0 4.5h8V21h-8z' fill='white'/%3E%3C/svg%3E">
+
+    <script>
+        // Set the theme before first paint to avoid a flash of the wrong theme.
+        (function () {
+            var params = new URLSearchParams(location.search);
+            var forced = params.get('theme');
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            var theme = (forced === 'dark' || forced === 'light') ? forced : (saved || preferred);
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <script src="{% static 'js/app.js' %}" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

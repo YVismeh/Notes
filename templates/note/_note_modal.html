@@ -1,0 +1,67 @@
+<div class="modal" id="noteModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+    <div class="modal__backdrop" data-close-modal></div>
+
+    <div class="modal__panel">
+        <form id="noteForm" novalidate>
+            <header class="modal__header">
+                <h2 id="noteModalTitle">یادداشت جدید</h2>
+                <button type="button" class="icon-btn modal__close" data-close-modal aria-label="بستن" title="بستن">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                         stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18"/>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="modal__body">
+                <input type="hidden" name="id" id="noteFormId">
+
+                <div class="field" data-field="title">
+                    <div class="field__top">
+                        <label for="noteTitle">عنوان</label>
+                        <span class="field__counter"><span id="titleCount">۰</span> / ۱۰۰</span>
+                    </div>
+                    <input type="text" id="noteTitle" name="title" maxlength="100"
+                           placeholder="عنوان یادداشت" autocomplete="off">
+                    <p class="field__error" data-error="title"></p>
+                </div>
+
+                <div class="field" data-field="content">
+                    <label for="noteContent">متن یادداشت</label>
+                    <textarea id="noteContent" name="content" rows="5"
+                              placeholder="ذهننت را روی کاغذ بینداز..."></textarea>
+                    <p class="field__error" data-error="content"></p>
+                </div>
+
+                <div class="field" data-field="color">
+                    <label>رنگ</label>
+                    <div class="color-picker" role="radiogroup" aria-label="رنگ یادداشت">
+                        {% for value, label in color_choices %}
+                            <input type="radio" name="color" id="color-{{ value }}" value="{{ value }}"
+                                   {% if forloop.first %}checked{% endif %}>
+                            <label for="color-{{ value }}" class="color-dot color-dot--{{ value }}"
+                                   title="{{ label }}" aria-label="{{ label }}"></label>
+                        {% endfor %}
+                    </div>
+                    <p class="field__error" data-error="color"></p>
+                </div>
+
+                <div class="field field--inline">
+                    <label class="switch">
+                        <input type="checkbox" name="is_pinned" id="notePinned">
+                        <span class="switch__track" aria-hidden="true"></span>
+                        <span>سنجاق‌کردن یادداشت</span>
+                    </label>
+                </div>
+            </div>
+
+            <footer class="modal__footer">
+                <button type="button" class="btn btn--ghost" data-close-modal>انصراف</button>
+                <button type="submit" class="btn btn--primary" id="saveNoteBtn">
+                    <span class="btn__spinner" aria-hidden="true"></span>
+                    <span class="btn__label">ذخیره</span>
+                </button>
+            </footer>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="modal modal--sm" id="deleteModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal__backdrop" data-close-modal></div>
+
+    <div class="modal__panel">
+        <div class="modal__body modal__body--center">
+            <div class="delete-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h16"/>
+                    <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                    <path d="M6.5 7l1 12a1 1 0 0 0 1 .9h7a1 1 0 0 0 1-.9l1-12"/>
+                    <path d="M10 11v6M14 11v6"/>
+                </svg>
+            </div>
+            <h2 id="deleteModalTitle">حذف یادداشت</h2>
+            <p class="modal__text">
+                آیا از حذف «<span id="deleteNoteTitle"></span>» مطمئن هستید؟
+                این عمل قابل بازگشت نیست.
+            </p>
+        </div>
+
+        <footer class="modal__footer">
+            <button type="button" class="btn btn--ghost" data-close-modal>انصراف</button>
+            <button type="button" class="btn btn--danger" id="confirmDeleteBtn">
+                <span class="btn__spinner" aria-hidden="true"></span>
+                <span class="btn__label">حذف کن</span>
+            </button>
+        </footer>
+    </div>
+</div>
